@@ -1,25 +1,35 @@
-# GridMask Data Augmentation
+# GridBlur Data Augmentation (An Improved GridMask)
 
 ## Introduction
-This project is the code for implementing the GridMask augmentation for image classification and object detection.
-The full paper is available at: [https://arxiv.org/abs/2001.04086](http://arxiv.org/abs/2001.04086). 
 
-## Main Result
+This project is an experimental implementation of a modified version of GridMask Augmentation by Chen et al.
 
-ImageNet
+## Motivation
 
-|                | Baseline   | + GridMask   |
-|----------------|------------|--------------|
-| ResNet-50      | 76.5       | 77.9         |
-| ResNet-101     | 78.0       | 79.1         |
-| ResNet-152     | 78.3       | 79.7         |
+GridMask is an excellent augmentation algorithm that introduces random dropouts in the dataset to promote generalization and robustness.
 
-COCO2017
+However, in the real world, the model never encounters "black square" dropouts, which often may lead to unexpected results.
 
-|                      | Baseline   | + GridMask   |
-|----------------------|------------|--------------|
-| FasterRCNN-R50-FPN   | 37.4       | 39.2         |
-| FasterRCNN-X101-FPN  | 41.2       | 42.6         |
+Hence, this experiment explores a possible solution by applying a blurred grid of squares instead of black dropouts.
 
-You can find pretrained models to achieve the results in [models](https://drive.google.com/drive/folders/12Vs8i3OrafXV5NjzuJVCHsa5i4oF9gmu?usp=sharing)
+
+## GridMask Official Source
+
+- Original GridMask Implementation: [dvlab-research/GridMask | GitHub](https://github.com/dvlab-research/GridMask)
+- Original GridMask Paper: [GridMask | arXiv](https://arxiv.org/abs/2001.04086)
+
+
+## Experimental Results (Ongoing)
+
+### ImageNet
+
+| Dataset                       | Architecture | Augmentation | Top 1 Accuracy | Top 5 Accuracy |
+|-------------------------------|--------------|--------------|----------------|----------------|
+| ImageNet Subset (50 classes) | ResNet50      | Baseline     | 77.72          | 94.40          |
+| ImageNet Subset (50 classes) | ResNet50      | + GridMask   | 78.24          | 94.68          |
+| ImageNet Subset (50 classes) | ResNet50      | + GridBlur   | Ongoing        | Ongoing        |
+
+### COCO2017
+
+TBD 
 
